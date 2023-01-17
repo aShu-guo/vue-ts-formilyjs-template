@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'Blimone';
+  src: local('Blimone'), url('assets/fonts/Blimone-Light.woff');
+}
+
+body {
+  background-color: #0a1013;
+}
+
+.base-required {
+  color: #ff4d4f;
+  margin-right: 4px;
+  display: inline-block;
+  font-family: SimSun, sans-serif;
+}

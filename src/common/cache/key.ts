@@ -1,0 +1,5 @@
+export enum CacheKey {
+  ACCESS_TOKEN = 'ACCESS_TOKEN',
+  VERSION = 'VERSION',
+  USERINFO = 'USERINFO',
+}

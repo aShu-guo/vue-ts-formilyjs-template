@@ -1,0 +1,58 @@
+{
+  "airportsAddress": {
+    "province": 1,
+    "city": 11,
+    "area": 111,
+    "street": "A大道B街道"
+  },
+  "startCircle": {
+    "radius": 100,
+    "minHeight": 200,
+    "longitude": "120.1",
+    "latitude": "30.4"
+  },
+  "centerCircle": {
+    "radius": "100",
+    "minHeight": "200",
+    "latitude": "30.4",
+    "longitude": "120.1"
+  },
+  "pointsList": [
+    {
+      "info": {
+        "baseLine": {
+          "longitude": "120.333",
+          "latitude": "30.22"
+        },
+        "pointNo": "land-01",
+        "altitude": 40,
+        "roadRadius": 20,
+        "roadHeight": 100
+      },
+      "standList": [
+        {
+          "latAndLng": {
+            "longitude": "119.22",
+            "latitude": "10.22"
+          },
+          "landNo": "stop-01",
+          "radius": "5"
+        },
+        {
+          "latAndLng": {
+            "longitude": "110.22",
+            "latitude": "20.33"
+          },
+          "landNo": "stop-02",
+          "radius": "5"
+        }
+      ]
+    }
+  ],
+  "airportsNo": "UAS20220911",
+  "airportsName": "911起降场",
+  "altitude": "1000",
+  "measureArea": "500",
+  "type": [1, 2, 3],
+  "isWar": 1
+}
