@@ -1,9 +1,9 @@
+import { MetaRecord } from '@ant-design-vue/pro-layout/dist/typings';
+
 export {};
 declare module 'vue-router' {
-  interface RouteMeta {
+  interface RouteMeta extends MetaRecord {
     needAuth?: boolean;
-    title?: string;
-    icon?: string;
     roles?: ('admin' | 'staff')[];
     /**
      * 与roles搭配使用

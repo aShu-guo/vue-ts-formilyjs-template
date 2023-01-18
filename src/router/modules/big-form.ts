@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import IconFont from '/@/components/icon-font/index.vue';
 
 export const BigFormRoutes = {
   Demo: {
@@ -18,14 +19,17 @@ export const BigFormRoutes = {
 const routes: RouteRecordRaw[] = [
   {
     ...BigFormRoutes.Demo,
-    component: () => import('/@/layouts/base-layout/index.vue'),
+    component: () => import('/@/layouts/blank-layout/index.vue'),
     redirect: BigFormRoutes.Add.path,
+    meta: {
+      title: 'formily示例',
+      icon: h(IconFont, { type: 'icon-integral' }),
+    },
     children: [
       {
         ...BigFormRoutes.Add,
         component: () => import('/@/pages/big-form/add.vue'),
         meta: {
-          needAuth: false,
           title: '新增',
         },
       },
@@ -33,7 +37,6 @@ const routes: RouteRecordRaw[] = [
         ...BigFormRoutes.Edit,
         component: () => import('/@/pages/big-form/edit.vue'),
         meta: {
-          needAuth: false,
           title: '编辑',
         },
       },

@@ -15,6 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ant-design-vue/pro-layout": "^3.2.3",
     "@ant-design/icons-vue": "6.1.0",
     "@formily/antdv-x3": "^1.0.0-alpha.5",
     "@formily/core": "^2.2.12",

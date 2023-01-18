@@ -1,4 +1,3 @@
-import PatrolLogRoutesRecord from '/@/router/modules/patrol-log';
 import { RouteRecordRaw } from 'vue-router';
 import HomeRoutesRecord, { HomeRoutes } from '/@/router/modules/home';
 import BigFormRoutesRecord from '/@/router/modules/big-form';
@@ -9,8 +8,8 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'base-layout',
     component: () => import('/@/layouts/base-layout/index.vue'),
-    redirect: HomeRoutes.HomePage.path,
-    children: [...HomeRoutesRecord, ...PatrolLogRoutesRecord, ...BigFormRoutesRecord, ...OpenLayerDemoRoutes],
+    redirect: HomeRoutes.HomeIndex.path,
+    children: [...HomeRoutesRecord, ...BigFormRoutesRecord, ...OpenLayerDemoRoutes],
   },
 ];
 

@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     ATable: typeof import('ant-design-vue/es')['Table'];
     Empty: typeof import('./../src/components/empty/index.vue')['default'];
     Footer: typeof import('./../src/components/footer/index.vue')['default'];
+    IconFont: typeof import('./../src/components/icon-font/index.vue')['default'];
     Params: typeof import('./../src/components/table-render/params/index.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];

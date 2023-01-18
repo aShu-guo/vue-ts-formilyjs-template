@@ -17,7 +17,7 @@
  * 2.只有在进入路由守卫时判断是否为需要放行，不符合条件时跳转至404
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
-import StaticRoutesRecord, { NotFountRoutes, StaticRoutes } from '/@/router/modules/static';
+import StaticRoutesRecord, { StaticRoutes } from '/@/router/modules/static';
 import AsyncRoutesRecord from '/@/router/modules';
 import NProgress from 'nprogress';
 import { useUserStore } from '/@/store';
@@ -30,7 +30,7 @@ const whiteList = [...whitePath];
 //导入生成的路由数据
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...StaticRoutesRecord, ...AsyncRoutesRecord, ...NotFountRoutes],
+  routes: [...AsyncRoutesRecord, ...StaticRoutesRecord],
 });
 
 /**

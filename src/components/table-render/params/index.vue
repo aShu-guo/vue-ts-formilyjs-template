@@ -35,7 +35,6 @@ import { ISchema } from '@formily/json-schema/esm/types';
 import { Component, Decorator, noop, SearchApi } from '/@/components/table-render/types';
 import { TimeOut } from '/@/components/table-render/table-helper';
 import { FilterValue, SorterResult, TablePaginationConfig } from 'ant-design-vue/es/table/interface';
-import Verification from '/@/components/verification';
 // 开启协议垫片
 Schema.enablePolyfills(['1.0']);
 
@@ -93,7 +92,6 @@ const { SchemaField } = createSchemaField({
     Divider,
     ArrayItems,
     InputNumber,
-    Verification,
   },
 });
 

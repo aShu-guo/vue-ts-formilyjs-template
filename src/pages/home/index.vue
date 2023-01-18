@@ -4,7 +4,7 @@ import { framework } from '../data';
 const _data = ref(framework);
 </script>
 <template>
-  <div class="dark:text-slate-400 dark:bg-slate-900"></div>
+  <div class="dark:text-slate-400 dark:bg-slate-900">这是首页</div>
 </template>
 
 <style lang="less" scoped>

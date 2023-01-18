@@ -1,34 +1,28 @@
 <template>
-  <svg aria-hidden="true" class="svg-icon-spin" :class="calsses">
+  <svg aria-hidden="true" class="svg-icon-spin" :class="clss">
     <use :xlink:href="symbolId" :fill="color" />
   </svg>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-  prefix: {
-    type: String,
-    default: 'icon',
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: String,
-    default: '#333',
-  },
-  size: {
-    type: String,
-    default: 'default',
-  },
-});
-const symbolId = computed(() => `#${props.prefix}-${props.name}`);
-const calsses = computed(() => {
+const {
+  prefix = 'icon',
+  name = '',
+  color = '#333',
+  size = 'default',
+} = defineProps<{
+  prefix?: string;
+  name: string;
+  color?: string;
+  size?: string;
+}>();
+const symbolId = computed(() => `#${prefix}-${name}`);
+const clss = computed(() => {
   return {
-    [`sdms-size-${props.size}`]: props.size,
+    [`sdms-size-${size}`]: size,
   };
 });
+// 用于绑定样式
 const fontSize = reactive({ default: '32px', small: '20px', large: '48px' });
 </script>
 <style lang="less" scoped>

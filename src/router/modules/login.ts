@@ -14,7 +14,7 @@ export const LoginRoutes = {
 const routes: RouteRecordRaw[] = [
   {
     ...LoginRoutes.Login,
-    component: () => import('/@/layouts/base-layout/index.vue'),
+    component: () => import('/@/layouts/blank-layout/index.vue'),
     redirect: LoginRoutes.LoginPage.path,
     children: [
       {

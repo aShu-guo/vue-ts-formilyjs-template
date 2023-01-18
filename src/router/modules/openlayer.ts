@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import IconFont from '/@/components/icon-font/index.vue';
 
 export const OpenLayerDemoRoutes = {
   Demo: {
@@ -13,19 +14,12 @@ export const OpenLayerDemoRoutes = {
 
 const routes: RouteRecordRaw[] = [
   {
-    ...OpenLayerDemoRoutes.Demo,
-    component: () => import('/@/layouts/base-layout/index.vue'),
-    redirect: OpenLayerDemoRoutes.One.path,
-    children: [
-      {
-        ...OpenLayerDemoRoutes.One,
-        component: () => import('/@/pages/openlayers/one.vue'),
-        meta: {
-          needAuth: false,
-          title: '新增',
-        },
-      },
-    ],
+    ...OpenLayerDemoRoutes.One,
+    component: () => import('/@/pages/openlayers/one.vue'),
+    meta: {
+      title: 'openlayers示例',
+      icon: h(IconFont, { type: 'icon-code' }),
+    },
   },
 ];
 

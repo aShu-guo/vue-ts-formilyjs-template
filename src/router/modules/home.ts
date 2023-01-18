@@ -1,10 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
+import IconFont from '/@/components/icon-font/index.vue';
 
 export const HomeRoutes = {
-  HomePage: {
-    path: '/home',
-    name: 'HomePage',
-  },
   HomeIndex: {
     path: '/home/index',
     name: 'HomeIndex',
@@ -13,22 +10,14 @@ export const HomeRoutes = {
 
 const routes: RouteRecordRaw[] = [
   {
-    ...HomeRoutes.HomePage,
-    component: () => import('/@/layouts/home-layout/index.vue'),
-    redirect: HomeRoutes.HomeIndex.path,
+    ...HomeRoutes.HomeIndex,
+    component: () => import('/@/pages/home/index.vue'),
     meta: {
+      title: '首页',
       modifier: 'some',
       roles: ['admin', 'staff'],
+      icon: h(IconFont, { type: 'icon-all' }),
     },
-    children: [
-      {
-        ...HomeRoutes.HomeIndex,
-        component: () => import('/@/pages/home/index.vue'),
-        meta: {
-          title: '首页',
-        },
-      },
-    ],
   },
 ];
 
