@@ -6,16 +6,16 @@ import { RouteRecordRaw } from 'vue-router';
 export const StaticRoutes = {
   Login: { path: '/user/login', name: 'Login' },
   NoAuthentication: { path: '/403', name: 'NoAuthentication' },
-  NotFound: { path: '/:path(.*)', name: 'NotFound' },
   ServerError: { path: '/500', name: 'ServerError' },
-} as const;
+};
 
 /**
  * 404单独导出
  */
+export const NotFound = { path: '/:path(.*)', name: 'NotFound' };
 export const NotFountRoutes = [
   {
-    ...StaticRoutes.NotFound,
+    ...NotFound,
     component: () => import('/@/pages/empty/404.vue'),
   },
 ];

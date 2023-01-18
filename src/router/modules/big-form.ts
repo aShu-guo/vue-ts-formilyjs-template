@@ -13,12 +13,12 @@ export const BigFormRoutes = {
     path: '/demo/edit',
     name: 'Edit',
   },
-} as const;
+};
 
 const routes: RouteRecordRaw[] = [
   {
     ...BigFormRoutes.Demo,
-    component: () => import('/@/layouts/pure-layout/index.vue'),
+    component: () => import('/@/layouts/base-layout/index.vue'),
     redirect: BigFormRoutes.Add.path,
     children: [
       {

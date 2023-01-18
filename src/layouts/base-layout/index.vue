@@ -1,8 +1,11 @@
-<template>
-  <div>base-layout before</div>
-  <router-view />
-  <div>base-layout after</div>
-</template>
+<script lang="ts">
+import { RouterView } from 'vue-router';
 
-<script lang="ts" setup></script>
-<style lang="scss" scoped></style>
+export default {
+  setup(_props, { attrs, slots }) {
+    return () => {
+      return h(RouterView, { ...attrs }, slots);
+    };
+  },
+};
+</script>

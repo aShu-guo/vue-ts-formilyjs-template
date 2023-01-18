@@ -9,12 +9,12 @@ export const OpenLayerDemoRoutes = {
     path: '/open-layer/one',
     name: 'OpenLayerOne',
   },
-} as const;
+};
 
 const routes: RouteRecordRaw[] = [
   {
     ...OpenLayerDemoRoutes.Demo,
-    component: () => import('/@/layouts/pure-layout/index.vue'),
+    component: () => import('/@/layouts/base-layout/index.vue'),
     redirect: OpenLayerDemoRoutes.One.path,
     children: [
       {

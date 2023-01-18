@@ -9,7 +9,7 @@ export interface UserState {
   token: string;
   name?: string;
   avatar?: string;
-  roles?: string[];
+  roles: string[];
   deptName?: string[];
 }
 

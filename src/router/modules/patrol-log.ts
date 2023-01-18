@@ -9,7 +9,7 @@ export const PatrolLogRoutes = {
     path: '/patrol-log/report',
     name: 'PatrolLogReport',
   },
-} as const;
+};
 
 const routes: RouteRecordRaw[] = [
   {

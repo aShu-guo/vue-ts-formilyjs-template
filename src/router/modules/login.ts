@@ -9,12 +9,12 @@ export const LoginRoutes = {
     path: '/login/index',
     name: 'LoginIndex',
   },
-} as const;
+};
 
 const routes: RouteRecordRaw[] = [
   {
     ...LoginRoutes.Login,
-    component: () => import('/@/layouts/pure-layout/index.vue'),
+    component: () => import('/@/layouts/base-layout/index.vue'),
     redirect: LoginRoutes.LoginPage.path,
     children: [
       {

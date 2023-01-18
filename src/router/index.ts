@@ -8,7 +8,7 @@
  * 基于登陆用户角色的路由校验策略
  *
  * 使用方式：
- * 方式一：（在项目入口处统一判断，对用户更加友好，展示在页面上的都是用户可以访问的）
+ * 方式一：（优点：可以在项目入口处统一判断，对用户更加友好，展示在页面上的都是用户可以访问的，更加灵活的控制用户访问权限）
  * 1.需要在路由表中的meta中标注当可以放行的角色名（例如：admin、staff）
  * 2.过滤现有路由表，并移除不符合条件的路由表构建出新的符合条件的路由表。（需要一个标识来确定已经路由表已经被过滤过了，那么每次进入路由守卫都不需要再重新过滤）
  *
@@ -21,6 +21,7 @@ import StaticRoutesRecord, { NotFountRoutes, StaticRoutes } from '/@/router/modu
 import AsyncRoutesRecord from '/@/router/modules';
 import NProgress from 'nprogress';
 import { useUserStore } from '/@/store';
+import { RolesModifiers } from '/@/router/types';
 
 const whitePath = Object.keys(StaticRoutes).map((key) => StaticRoutes[key].path);
 // 白名单
@@ -32,6 +33,26 @@ const router = createRouter({
   routes: [...StaticRoutesRecord, ...AsyncRoutesRecord, ...NotFountRoutes],
 });
 
+/**
+ * 是否放行路由
+ * @param target 访问路由需要的角色表
+ * @param source 当前用户的角色表
+ * @param modifiers
+ */
+const canNotVisit = function (target: string[] | undefined, source: string[], modifiers: RolesModifiers) {
+  if (Array.isArray(target)) {
+    return (
+      (modifiers === 'every' && (source.length === 0 || target.some((item) => !source.includes(item)))) ||
+      (modifiers === 'not' && target.some((item) => source.includes(item))) ||
+      (modifiers !== 'every' &&
+        modifiers !== 'not' &&
+        (source.length === 0 || target.every((item) => !source.includes(item))))
+    );
+  } else {
+    return !!target;
+  }
+};
+
 router.beforeEach((to, _from, next) => {
   NProgress.start();
   document.title = to.meta.title || '';
@@ -41,7 +62,11 @@ router.beforeEach((to, _from, next) => {
   } else {
     const userStore = useUserStore();
     if (userStore.token) {
-      next();
+      if (canNotVisit(to.meta.roles, userStore.roles, to.meta.modifier!)) {
+        next(StaticRoutes.NoAuthentication.path);
+      } else {
+        next();
+      }
     } else {
       // 没有token则跳转至登陆页面
       next(StaticRoutes.Login.path);

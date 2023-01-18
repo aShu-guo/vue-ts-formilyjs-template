@@ -2,26 +2,29 @@ import { RouteRecordRaw } from 'vue-router';
 
 export const HomeRoutes = {
   HomePage: {
-    path: '/home-page',
+    path: '/home',
     name: 'HomePage',
   },
-  HomeUavSeat: {
-    path: '/home/uav-monitor-seat',
-    name: 'HomeUavMonitorSeat',
+  HomeIndex: {
+    path: '/home/index',
+    name: 'HomeIndex',
   },
-} as const;
+};
 
 const routes: RouteRecordRaw[] = [
   {
     ...HomeRoutes.HomePage,
-    component: () => import('/@/layouts/pure-layout/index.vue'),
-    redirect: HomeRoutes.HomeUavSeat.path,
+    component: () => import('/@/layouts/home-layout/index.vue'),
+    redirect: HomeRoutes.HomeIndex.path,
+    meta: {
+      modifier: 'some',
+      roles: ['admin', 'staff'],
+    },
     children: [
       {
-        ...HomeRoutes.HomeUavSeat,
+        ...HomeRoutes.HomeIndex,
         component: () => import('/@/pages/home/index.vue'),
         meta: {
-          needAuth: true,
           title: '首页',
         },
       },
