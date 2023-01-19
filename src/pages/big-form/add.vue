@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <span>patrol-log-collect</span>
+  <page-wrapper>
     <Table :schema="schema" :api="initList" :scope="{ detail: {} }" />
-  </div>
+  </page-wrapper>
 </template>
 <script lang="ts" setup>
 import Table from '/@/components/table-render/index.vue';

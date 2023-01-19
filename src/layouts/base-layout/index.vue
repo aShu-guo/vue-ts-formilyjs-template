@@ -1,12 +1,28 @@
 <template>
   <pro-layout
     :locale="locale"
-    v-bind="layoutConf"
+    title="vue-admin-template"
+    navTheme="dark"
+    headerTheme="dark"
+    layout="mix"
+    :splitMenus="false"
+    :menuData="menuData"
+    :logo="logo"
+    :breadcrumb="{ routes: breadcrumb }"
     v-model:openKeys="state.openKeys"
     v-model:collapsed="state.collapsed"
     v-model:selectedKeys="state.selectedKeys"
   >
-    <router-view />
+    <!--  自定义面包屑：需要传入breadcrumb使用  -->
+    <template #breadcrumbRender="{ route, params, routes }">
+      <span v-if="routes.indexOf(route) === routes.length - 1">
+        {{ route.breadcrumbName }}
+      </span>
+      <router-link v-else :to="{ path: route.path, params }">
+        {{ route.breadcrumbName }}
+      </router-link>
+    </template>
+
     <!--  右侧用户头像  -->
     <template #rightContentRender>
       <a-popover trigger="hover">
@@ -30,19 +46,25 @@
         </div>
       </a-popover>
     </template>
+
     <template #footerRender>
       <GlobalFooter :links="links" copyright="aShu-guo &copy; 2023" />
     </template>
+
+    <router-view v-slot="{ Component }">
+      <WaterMark content="aShu-guo">
+        <component :is="Component" />
+      </WaterMark>
+    </router-view>
   </pro-layout>
 </template>
 
 <script setup lang="ts">
-import { getMenuData, clearMenuItem, GlobalFooter } from '@ant-design-vue/pro-layout';
+import { getMenuData, clearMenuItem, GlobalFooter, RouteContextProps } from '@ant-design-vue/pro-layout';
 import '@ant-design-vue/pro-layout/dist/style.less';
-import ProLayout from '@ant-design-vue/pro-layout';
+import ProLayout, { WaterMark } from '@ant-design-vue/pro-layout';
 import SvgIcon from '/@/components/svg-icon/index.vue';
 import { LogoutOutlined, EditOutlined, UserOutlined } from '@ant-design/icons-vue';
-import { HomeRoutes } from '/@/router/modules/home';
 import { useUserStore } from '/@/store';
 
 const userStore = useUserStore();
@@ -54,16 +76,27 @@ const router = useRouter();
 
 const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
 
-const state = reactive({
-  collapsed: false, // default value
+const state = reactive<Omit<RouteContextProps, 'menuData'>>({
+  collapsed: false,
   openKeys: ['/dashboard'],
-  selectedKeys: [HomeRoutes.HomeIndex.path],
+  selectedKeys: [],
 });
 
-const breadcrumbRender = ({ route }) => {
-  console.log('>>>>>>.');
-  return h('span', route.meta.title);
-};
+state.selectedKeys.push(router.currentRoute.value.path);
+
+const breadcrumb = computed(() =>
+  router.currentRoute.value.matched
+    .concat()
+    .filter((_item, index) => index !== 0)
+    .map((item) => {
+      return {
+        path: item.path,
+        icon: item.meta.icon,
+        params: item.meta?.params,
+        breadcrumbName: item.meta.title || '',
+      };
+    }),
+);
 
 const links = [
   {
@@ -73,17 +106,6 @@ const links = [
   },
   { title: 'vue-admin-template', blankTarget: true, href: 'https://github.com/aShu-guo/vue-admin-template' },
 ];
-const layoutConf = reactive({
-  title: 'vue-admin-template',
-  navTheme: 'dark',
-  headerTheme: 'dark',
-  layout: 'mix',
-  splitMenus: false,
-  menuData,
-  logo,
-  breadcrumbRender,
-});
-
 const doLogout = () => {
   console.log('>>>>>登出');
 };

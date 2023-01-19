@@ -1,12 +1,13 @@
-<script setup lang="ts">
-import { framework } from '../data';
-
-const _data = ref(framework);
-</script>
 <template>
-  <div class="dark:text-slate-400 dark:bg-slate-900">这是首页</div>
+  <page-wrapper>
+    <div>
+      <div>1111</div>
+      <div>2222</div>
+      <div>3333</div>
+    </div>
+  </page-wrapper>
 </template>
-
+<script setup lang="ts"></script>
 <style lang="less" scoped>
 .version {
   display: inline-block;
