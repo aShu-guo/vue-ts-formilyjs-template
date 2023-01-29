@@ -1,10 +1,12 @@
+import { isNull, isUndefined } from 'lodash-es';
+
 export interface CacheEntity<T> {
   value: T;
   start?: number;
   expire?: number;
 }
 
-type Value = string | object | number;
+type Value = string | object | number | boolean | null | undefined;
 type Key = string;
 
 /**
@@ -13,7 +15,11 @@ type Key = string;
  * @param value
  */
 export function setValue(key: Key, value: Value) {
-  localStorage.setItem(key, JSON.stringify(value));
+  if (isNull(value) || isUndefined(value)) {
+    localStorage.setItem(key, '');
+  } else {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 }
 
 /**
