@@ -31,7 +31,7 @@ export const useUserStore = defineStore('userinfo', {
 
       setAliveValue(CacheKey.ACCESS_TOKEN, token);
       setAliveValue(CacheKey.USERINFO, { name: userName, roles, deptName: [].concat(deptName) });
-      router.push(HomeRoutes.HomePage.path);
+      router.push(HomeRoutes.HomeIndex.path);
     },
   },
 });

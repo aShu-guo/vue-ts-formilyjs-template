@@ -1,13 +1,11 @@
 <template>
   <page-wrapper>
-    <div>
-      <div>1111</div>
-      <div>2222</div>
-      <div>3333</div>
-    </div>
+    <DynamicLine key="dynamic-2" />
   </page-wrapper>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DynamicLine from '/@/pages/home/components/dynamic-line.vue';
+</script>
 <style lang="less" scoped>
 .version {
   display: inline-block;

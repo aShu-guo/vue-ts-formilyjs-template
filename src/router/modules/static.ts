@@ -10,19 +10,11 @@ export const StaticRoutes = {
   NotFound: { path: '/:path(.*)', name: 'NotFound' },
 };
 
-/**
- * 404单独导出
- */
-export const NotFound = { path: '/:path(.*)', name: 'NotFound' };
 const routes: RouteRecordRaw[] = [
   {
     path: '/empty',
     component: () => import('/@/layouts/base-layout/index.vue'),
     children: [
-      {
-        ...StaticRoutes.Login,
-        component: () => import('/@/pages/login/index.vue'),
-      },
       {
         ...StaticRoutes.NoAuthentication,
         component: () => import('/@/pages/empty/403.vue'),
@@ -33,10 +25,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import('/@/pages/empty/500.vue'),
       },
       {
-        ...NotFound,
+        ...StaticRoutes.NotFound,
         component: () => import('/@/pages/empty/404.vue'),
       },
     ],
+  },
+  {
+    ...StaticRoutes.Login,
+    component: () => import('/@/pages/login/index.vue'),
   },
 ];
 
