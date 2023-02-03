@@ -15,7 +15,7 @@ const fontSize = computed(() => {
 });
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3867188_1y2psdeyeis.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3867188_r5nmxwh9ihb.js',
 });
 </script>
 <style lang="less" scoped>
