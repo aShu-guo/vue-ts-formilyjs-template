@@ -2,24 +2,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { handleGeneralError, handleNetworkError } from './status';
 import { BaseFn } from './type';
 import { getAliveValue } from '/@/common/cache';
-import { message } from 'ant-design-vue/es';
 import { CacheKey } from '/@/common/cache/key';
 
 axios.defaults.timeout = 60000;
 axios.defaults.withCredentials = false;
 
-/**
- * 构造出接口baseUrl
- */
-const genAPIHost = () => {
-  if (import.meta.env.VITE_OPEN_MOCK) {
-    return import.meta.env.VITE_API_HOST + '/mock/api';
-  } else {
-    return import.meta.env.VITE_API_HOST;
-  }
-};
 const options: AxiosRequestConfig = {
-  baseURL: genAPIHost(),
+  baseURL: import.meta.env.VITE_API_HOST,
 };
 
 const axiosInstance = axios.create(options);
@@ -41,7 +30,10 @@ axiosInstance.interceptors.request.use(
 // axios实例拦截响应
 axiosInstance.interceptors.response.use(
   (response) => {
-    if (response.status !== 200) return Promise.reject(response.data);
+    if (response.status !== 200) {
+      return Promise.reject(response.data);
+    }
+
     const { message, code } = response.data;
     handleGeneralError(code, message);
     return response;
@@ -69,8 +61,9 @@ const get = <T = any>(url: string, params?: object, resHandler?: BaseFn, config?
         }
       })
       .catch((error) => {
+        console.log(error);
         console.error(`请求错误: ${error}`);
-        message.error('服务器错误');
+        // message.error('服务器错误');
         reject(error);
       });
   });
@@ -97,8 +90,8 @@ const post = <T = any>(
         }
       })
       .catch((error) => {
+        console.log(error);
         console.error(`请求错误: ${error}`);
-        message.error('服务器错误');
         reject(error);
       });
   });

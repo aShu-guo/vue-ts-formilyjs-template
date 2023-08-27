@@ -1,9 +1,8 @@
-import { getAliveValue, setAliveValue } from '/@/common/cache';
+import { getAliveValue } from '/@/common/cache';
 import { CacheKey } from '/@/common/cache/key';
 import { post } from '/@/common/http';
-import UserAPI from '/@/api/user';
-import router from '/@/router';
-import { HomeRoutes } from '/@/router/modules/home';
+import AuthAPIs from '/@/api/auth';
+import { FormState } from '/@/pages/login/types';
 
 export interface UserState {
   token: string;
@@ -25,13 +24,14 @@ export const useUserStore = defineStore('userinfo', {
     };
   },
   actions: {
-    async login(params) {
-      const { userName, token, roles, deptName } = await post(UserAPI.doLogin, params, {});
-      this.$patch({ token, name: userName, roles, deptName: [].concat(deptName) });
-
-      setAliveValue(CacheKey.ACCESS_TOKEN, token);
-      setAliveValue(CacheKey.USERINFO, { name: userName, roles, deptName: [].concat(deptName) });
-      router.push(HomeRoutes.HomeIndex.path);
+    async login(params: FormState) {
+      const { access_token, refresh_token } = await post(AuthAPIs.doLogin, params);
+      console.log(access_token, refresh_token);
+      // this.$patch({ token, name: userName, roles, deptName: [].concat(deptName) });
+      //
+      // setAliveValue(CacheKey.ACCESS_TOKEN, token);
+      // setAliveValue(CacheKey.USERINFO, { name: userName, roles, deptName: [].concat(deptName) });
+      // router.push(HomeRoutes.HomeIndex.path);
     },
   },
 });

@@ -11,7 +11,6 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { ConfigSvgIconsPlugin } from './svgIcons';
 import { AutoRegistryComponents } from './component';
 import { AutoImportDeps } from './autoImport';
-import { ConfigMockPlugin } from './mock';
 import { ConfigVisualizerConfig } from './visualizer';
 // import { ConfigCompressPlugin } from './compress';
 import { ConfigRestartPlugin } from './restart';
@@ -23,8 +22,7 @@ import { ConfigInspect } from './inspect';
 export function createVitePlugins(isBuild: boolean, buildEnv: 'prod' | 'test') {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     // vue支持
-    // reactivityTransform: https://cn.vuejs.org/guide/extras/reactivity-transform.html#retaining-reactivity-across-function-boundaries
-    vue({ reactivityTransform: true }),
+    vue(),
     // JSX支持
     vueJsx(),
     // setup语法糖组件名支持
@@ -54,9 +52,6 @@ export function createVitePlugins(isBuild: boolean, buildEnv: 'prod' | 'test') {
 
   // vite-plugin-svg-icons
   vitePlugins.push(ConfigSvgIconsPlugin(isBuild));
-
-  // vite-plugin-mock
-  vitePlugins.push(ConfigMockPlugin(isBuild));
 
   // 观察每个插件的中间态
   vitePlugins.push(ConfigInspect());

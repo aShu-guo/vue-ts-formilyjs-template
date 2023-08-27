@@ -1,5 +1,12 @@
 <template>
-  <a-form :model="formState" name="basic" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" autocomplete="off">
+  <a-form
+    :model="formState"
+    name="basic"
+    :label-col="{ span: 8 }"
+    :wrapper-col="{ span: 16 }"
+    autocomplete="off"
+    @finish="onFinish"
+  >
     <a-form-item label="Username" name="username" :rules="[{ required: true, message: 'Please input your username!' }]">
       <a-input v-model:value="formState.username" />
     </a-form-item>
@@ -9,28 +16,25 @@
     </a-form-item>
 
     <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
-      <a-button type="primary" html-type="submit" @click="login">Submit</a-button>
+      <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
   </a-form>
 </template>
 
 <script setup lang="ts">
 import { useUserStore } from '/@/store';
-
-interface FormState {
-  username: string;
-  password: string;
-}
+import { FormState } from '/@/pages/login/types';
 
 const formState = reactive<FormState>({
-  username: 'admin',
-  password: '111111',
+  username: 'xiaohuang',
+  password: '1234567',
 });
 
-const userStore = useUserStore();
+const store = useUserStore();
 
-const login = () => {
-  userStore.login(formState);
+const onFinish = (values: FormState) => {
+  store.login(values);
+  console.log('Success:', values);
 };
 </script>
 

@@ -40,7 +40,8 @@ export function getValue<T>(key: Key): T | undefined {
  * @returns {string|any}
  */
 export function getAliveValue<T>(key: Key): CacheEntity<T> | undefined {
-  if (!isExpire(key)) {
+  const data = getValue<CacheEntity<any>>(key);
+  if (data && Date.now().valueOf() - data.start! < data.expire!) {
     return getValue<CacheEntity<T>>(key);
   }
 }
@@ -64,13 +65,8 @@ export function setAliveValue(key: Key, value: Value, expire = 7 * 24 * 60 * 60 
  * @returns {boolean}
  */
 export function isExpire(key: Key): boolean {
-  let isExpire = true;
-  const data = getValue<CacheEntity<unknown>>(key);
-
-  if (data && Date.now().valueOf() - data.start! < data.expire!) {
-    isExpire = false;
-  }
-  return isExpire;
+  const data = getValue<CacheEntity<any>>(key);
+  return !(data && Date.now().valueOf() - data.start! < data.expire!);
 }
 
 /**
