@@ -13,7 +13,6 @@ declare module 'vue' {
     Empty: typeof import('./../src/components/empty/index.vue')['default'];
     Footer: typeof import('./../src/components/footer/index.vue')['default'];
     IconFont: typeof import('./../src/components/icon-font/index.vue')['default'];
-    PageWrapper: typeof import('./../src/components/page-wrapper/index.vue')['default'];
     Params: typeof import('./../src/components/table-render/params/index.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];

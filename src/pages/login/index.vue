@@ -38,7 +38,7 @@ const onFinish = (values: FormState) => {
 };
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .ant-form {
   max-width: 600px;
   margin: 0 auto;

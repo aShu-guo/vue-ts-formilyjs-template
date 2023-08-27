@@ -1,11 +1,12 @@
 <template>
-  <ConfigProvider :locale="locale">
+  <AConfigProvider :locale="locale">
     <router-view />
-  </ConfigProvider>
+  </AConfigProvider>
 </template>
 <script setup lang="ts">
-import { ConfigProvider } from 'ant-design-vue';
 import 'dayjs/locale/zh-cn';
+import dayjs from 'dayjs';
 import locale from 'ant-design-vue/es/date-picker/locale/zh_CN';
+dayjs.locale('en');
 </script>
-<style lang="less"></style>
+<style></style>

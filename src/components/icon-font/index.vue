@@ -18,7 +18,7 @@ const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/c/font_3867188_r5nmxwh9ihb.js',
 });
 </script>
-<style lang="less" scoped>
+<style scoped>
 .anticon {
   font-size: v-bind('fontSize') !important;
 }

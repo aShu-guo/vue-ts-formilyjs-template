@@ -42,7 +42,7 @@
               <UserOutlined />
             </template>
           </a-avatar>
-          <span class="user-name">{{ userStore.name }}</span>
+          <span class="user-name">{{ userStore['nickName'] || '' }}</span>
         </div>
       </a-popover>
     </template>
@@ -114,7 +114,7 @@ const modifyPwd = () => {
   console.log('修改密码');
 };
 </script>
-<style lang="less">
+<style>
 .reset-bottom {
   .info-font {
     margin-left: 4px;

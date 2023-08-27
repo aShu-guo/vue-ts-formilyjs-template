@@ -64,6 +64,5 @@ export const handleGeneralError = (code: number, msg: string) => {
   // 接口失败的情况
   if (code != 200) {
     message.error(msg);
-    return false;
   }
 };

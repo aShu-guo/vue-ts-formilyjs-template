@@ -17,7 +17,7 @@ const axiosInstance = axios.create(options);
 axiosInstance.interceptors.request.use(
   (config) => {
     const entity = getAliveValue<string>(CacheKey.ACCESS_TOKEN);
-    if (entity?.value) {
+    if (entity?.value && !config.headers['Authorization']) {
       config.headers['Authorization'] = entity.value;
     }
     return config;
@@ -34,8 +34,8 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(response.data);
     }
 
-    const { message, code } = response.data;
-    handleGeneralError(code, message);
+    const { message, bizCode } = response.data;
+    handleGeneralError(bizCode, message);
     return response;
   },
   // 请求失败

@@ -25,7 +25,7 @@ const clss = computed(() => {
 // 用于绑定样式
 const fontSize = reactive({ default: '32px', small: '20px', large: '48px' });
 </script>
-<style lang="less" scoped>
+<style scoped>
 .svg-icon-spin {
   width: v-bind('fontSize.default');
   height: v-bind('fontSize.default');
