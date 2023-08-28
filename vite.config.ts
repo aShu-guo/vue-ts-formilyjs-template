@@ -8,7 +8,6 @@ function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
 }
 
-console.log(pathResolve('src') + '/');
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build';
@@ -19,16 +18,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     envDir: './env',
     resolve: {
       alias: [
-        { find: 'vue-i18n', replacement: 'vue-i18n/dist/vue-i18n.cjs.js' },
         {
           find: /..\/__builtins__\/styles\/common.less/,
           replacement: pathResolve('src/assets/styles/pure.less'),
           // replacement: pathResolve('node_modules/ant-design-vue/es/style/index.less'),
         },
-        /*{
-          find: /^ant-design-vue\/lib\/style\/index.less/,
-          replacement: pathResolve('node_modules/ant-design-vue/es') + '/',
-        },*/
         { find: /^\/assets/, replacement: pathResolve('src/assets') + '/' },
         // /@/xxxx => src/xxxx
         { find: /\/@\//, replacement: pathResolve('src') + '/' },

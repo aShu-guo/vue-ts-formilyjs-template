@@ -1,4 +1,5 @@
 module.exports = {
+  plugins: ['prettier-plugin-tailwindcss'],
   printWidth: 120, //单行长度
   tabWidth: 2, //缩进长度
   useTabs: false, //使用空格代替tab缩进

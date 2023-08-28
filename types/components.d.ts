@@ -7,19 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    403: typeof import('./../src/components/empty/403.vue')['default'];
-    404: typeof import('./../src/components/empty/404.vue')['default'];
-    ATable: typeof import('ant-design-vue/es')['Table'];
-    Empty: typeof import('./../src/components/empty/index.vue')['default'];
-    Footer: typeof import('./../src/components/footer/index.vue')['default'];
-    IconFont: typeof import('./../src/components/icon-font/index.vue')['default'];
-    Params: typeof import('./../src/components/table-render/params/index.vue')['default'];
-    RouterLink: typeof import('vue-router')['RouterLink'];
-    RouterView: typeof import('vue-router')['RouterView'];
-    SubDeptTree: typeof import('./../src/components/tree-select/sub-dept-tree/index.vue')['default'];
-    SuperiorDeptTree: typeof import('./../src/components/tree-select/superior-dept-tree/index.vue')['default'];
-    SvgIcon: typeof import('./../src/components/svg-icon/index.vue')['default'];
-    TableRender: typeof import('./../src/components/table-render/index.vue')['default'];
-    Verification: typeof import('./../src/components/verification/index.vue')['default'];
+    BizIcons: (typeof import('./../src/components/biz-icons/index.vue'))['default'];
+    RouterLink: (typeof import('vue-router'))['RouterLink'];
+    RouterView: (typeof import('vue-router'))['RouterView'];
+    SvgIcon: (typeof import('./../src/components/svg-icon/index.vue'))['default'];
   }
 }

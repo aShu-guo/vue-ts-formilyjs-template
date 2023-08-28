@@ -36,7 +36,7 @@
             <span class="info-font">修改密码</span>
           </p>
         </template>
-        <div class="userinfo-box">
+        <div class="cursor-pointer">
           <a-avatar shape="square" size="small">
             <template #icon>
               <UserOutlined />

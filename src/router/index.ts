@@ -21,7 +21,7 @@ import StaticRoutesRecord, { StaticRoutes } from '/@/router/modules/static';
 import AsyncRoutesRecord from '/@/router/modules';
 import NProgress from 'nprogress';
 import { useUserStore } from '/@/store';
-import { RolesModifiers } from '/@/router/types';
+// import { RolesModifiers } from '/@/router/types';
 
 const whitePath = Object.keys(StaticRoutes).map((key) => StaticRoutes[key].path);
 // 白名单
@@ -39,19 +39,19 @@ const router = createRouter({
  * @param source 当前用户的角色表
  * @param modifiers
  */
-const canNotVisit = function (target: string[] | undefined, source: string[], modifiers: RolesModifiers) {
-  if (Array.isArray(target)) {
-    return (
-      (modifiers === 'every' && (source.length === 0 || target.some((item) => !source.includes(item)))) ||
-      (modifiers === 'not' && target.some((item) => source.includes(item))) ||
-      (modifiers !== 'every' &&
-        modifiers !== 'not' &&
-        (source.length === 0 || target.every((item) => !source.includes(item))))
-    );
-  } else {
-    return !!target;
-  }
-};
+// const canNotVisit = function (target: string[] | undefined, source: string[], modifiers: RolesModifiers) {
+//   if (Array.isArray(target)) {
+//     return (
+//       (modifiers === 'every' && (source.length === 0 || target.some((item) => !source.includes(item)))) ||
+//       (modifiers === 'not' && target.some((item) => source.includes(item))) ||
+//       (modifiers !== 'every' &&
+//         modifiers !== 'not' &&
+//         (source.length === 0 || target.every((item) => !source.includes(item))))
+//     );
+//   } else {
+//     return !!target;
+//   }
+// };
 
 router.beforeEach((to, _from, next) => {
   NProgress.start();
@@ -62,11 +62,12 @@ router.beforeEach((to, _from, next) => {
   } else {
     const userStore = useUserStore();
     if (userStore.token) {
-      if (canNotVisit(to.meta.roles, userStore.roles, to.meta.modifier!)) {
-        next(StaticRoutes.NoAuthentication.path);
-      } else {
-        next();
-      }
+      // if (canNotVisit(to.meta.roles, userStore.roles, to.meta.modifier!)) {
+      //   next(StaticRoutes.NoAuthentication.path);
+      // } else {
+      //   next();
+      // }
+      next();
     } else {
       // 没有token则跳转至登陆页面
       next(StaticRoutes.Login.path);

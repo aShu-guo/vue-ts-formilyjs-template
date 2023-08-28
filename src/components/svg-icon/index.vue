@@ -5,21 +5,20 @@
 </template>
 
 <script lang="ts" setup>
-const {
-  prefix = 'icon',
-  name = '',
-  color = '#333',
-  size = 'default',
-} = defineProps<{
-  prefix?: string;
-  name: string;
-  color?: string;
-  size?: string;
-}>();
-const symbolId = computed(() => `#${prefix}-${name}`);
+defineOptions({ name: 'SvgIcon' });
+const props = withDefaults(
+  defineProps<{
+    prefix?: string;
+    name: string;
+    color?: string;
+    size?: string;
+  }>(),
+  { prefix: 'icon', color: '#333', size: 'default' },
+);
+const symbolId = computed(() => `#${props.prefix}-${props.name}`);
 const clss = computed(() => {
   return {
-    [`sdms-size-${size}`]: size,
+    [`sdms-size-${props.size}`]: props.size,
   };
 });
 // 用于绑定样式

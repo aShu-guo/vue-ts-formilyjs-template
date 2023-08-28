@@ -50,7 +50,6 @@ const get = <T = any>(url: string, params?: object, resHandler?: BaseFn, config?
     axiosInstance
       .get(url, { params, ...config })
       .then((res) => {
-        console.log(res);
         const {
           data: { data },
         } = res;

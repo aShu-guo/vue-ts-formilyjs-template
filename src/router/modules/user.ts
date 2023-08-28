@@ -1,24 +1,24 @@
 import { RouteRecordRaw } from 'vue-router';
+import { RouterExtra } from '/@/router/types';
 import BizIcons from '/@/components/biz-icons/index.vue';
 import { Collections } from '/@/components/biz-icons/collections';
-import { RouterExtra } from '/@/router/types';
 
-export const HomeRoutes: RouterExtra = {
-  HomeIndex: {
-    path: '/home/index',
-    name: 'HomeIndex',
+export const UsersRoutes: RouterExtra = {
+  UsersIndex: {
+    path: '/user/index',
+    name: 'UsersIndex',
   },
 };
 
 const routes: RouteRecordRaw[] = [
   {
-    ...HomeRoutes.HomeIndex,
-    component: () => import('/@/pages/home/index.vue'),
+    ...UsersRoutes.UsersIndex,
+    component: () => import('/@/pages/users/index.vue'),
     meta: {
-      title: '首页',
+      title: '用户管理',
       modifier: 'some',
       roles: ['admin', 'staff'],
-      icon: h(BizIcons, { type: Collections.Home }),
+      icon: h(BizIcons, { type: Collections.User }),
     },
   },
 ];

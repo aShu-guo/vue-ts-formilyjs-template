@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Blimone';
   src: local('Blimone'), url('assets/fonts/Blimone-Light.woff');

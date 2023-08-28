@@ -4,10 +4,7 @@
  */
 import { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 import { splitVendorChunkPlugin } from 'vite';
-// import VitePluginCertificate from 'vite-plugin-mkcert';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { ConfigSvgIconsPlugin } from './svgIcons';
 import { AutoRegistryComponents } from './component';
 import { AutoImportDeps } from './autoImport';
@@ -23,14 +20,6 @@ export function createVitePlugins(isBuild: boolean, buildEnv: 'prod' | 'test') {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     // vue支持
     vue(),
-    // JSX支持
-    vueJsx(),
-    // setup语法糖组件名支持
-    vueSetupExtend(),
-    // 提供https证书
-    /* VitePluginCertificate({
-      source: 'coding',
-    }) as PluginOption,*/
     // 默认分包策略
     splitVendorChunkPlugin(),
   ];
